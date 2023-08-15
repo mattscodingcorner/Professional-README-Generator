@@ -54,10 +54,60 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(data) {
-    const filename = `${data.projectName.toLowerCase().split(` `).join(``)}.json`;
+function generateMarkdown(data) {
+    return `
+# ${data.projectName}
 
-    fs.writeFile(filename, JSON.stringify(data, null, `\t`), (err) => {
+${data.projectDescription}
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+
+## Installation
+
+to install project denpendencies run:
+
+
+${data.command}
+
+## Usage
+
+${data.userInfo}
+
+## License
+
+This project is licensed under the ${data.license} License. 
+
+## Contributing
+
+${data.userContrib}
+
+## Tests
+
+To run tests, use the following command:
+
+${data.commandTest}
+
+## Questions
+
+If you have any questions, please contact me at [Github](https://github.com/${data.githubUsername}) or via email at ${data.email}.
+    
+    `;
+}
+
+
+function writeToFile(data) {
+    const markdownContent = generateMarkdown(data);
+    const filename = `${data.projectName.toLowerCase().split(` `).join(``)}.md`;
+
+    fs.writeFile(filename, markdownContent, (err) => {
         if (err) {
             console.log(err);
         } else {

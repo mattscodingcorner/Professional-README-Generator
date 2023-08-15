@@ -1,6 +1,12 @@
 // TODO: Include packages needed for this application
-
+const inquirer = require(`inquirer`)
 // TODO: Create an array of questions for user input
+inquirer
+    .prompt({
+        type: `input`,
+        message: `what is your github username?`,
+        name: `input`,
+    })
 const questions = [];
 
 // TODO: Create a function to write README file

@@ -1,7 +1,7 @@
-// TODO: Include packages needed for this application
+// Packages needed for this application
 const inquirer = require(`inquirer`);
 const fs = require(`fs`);
-// TODO: Create an array of questions for user input 
+// Array of questions for user input 
 const questions = [
     {
         type: `input`,
@@ -53,8 +53,19 @@ const questions = [
     },
 ];
 
-// TODO: Create a function to write README file
+// Function to write README file
 function generateMarkdown(data) {
+    let licenseBadge = ``;
+
+    if (data.license === `MIT`) {
+        licenseBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
+    } else if (data.license === `GNU`) {
+        licenseBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
+    } else if (data.license === `Do What The F*ck You Want Public License`) {
+        licenseBadge = `[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)`;
+    } else if (data.license === `The Unlicense`) {
+        licenseBadge = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`;
+    }
     return `
 # ${data.projectName}
 
@@ -84,6 +95,7 @@ ${data.userInfo}
 ## License
 
 This project is licensed under the ${data.license} License. 
+${licenseBadge}
 
 ## Contributing
 
@@ -116,7 +128,7 @@ function writeToFile(data) {
     });
 }
 
-// TODO: Create a function to initialize app
+// unction to initialize app
 function init() {
     inquirer.prompt(questions)
     .then(answers => {

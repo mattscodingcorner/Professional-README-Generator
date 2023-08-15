@@ -24,6 +24,8 @@ npm i
 
 You'll need to run the index.js file as "node index.js" with the integrated terminal for it to work properly. See GIF 
 
+![GIF](/images/readgen.gif)
+
 ## License
 
 This project is licensed under the Do What The F*ck You Want To Public License License. 
